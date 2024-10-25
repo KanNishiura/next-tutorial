@@ -1,0 +1,24 @@
+services:
+  app:
+    image: localhost/next_tutorial
+    build:
+      context: .
+    tty: true
+    volumes:
+      - .:/app
+    container_name: next-tutorial-app
+    environment:
+      - WATCHPACK_POLLING=true
+    command: sh -c "npm run dev"
+    ports:
+      - "${APP_PORT:-3000}:3000"
+
+  db:
+    image: mysql:8.0
+    container_name: next-tutorial-db
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_TCP_PORT: 3306
+      MYSQL_DATABASE: "next_tutorial_mysql"
+    ports:
+      - ${DB_PORT:-3306}:3306
