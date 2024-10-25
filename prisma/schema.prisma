@@ -16,5 +16,5 @@ datasource db {
 model todoList {
   id Int @id @default(autoincrement())
   title String
-  completed Boolean 
+  completed Boolean @default(false)
 }
