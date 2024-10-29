@@ -1,3 +1,4 @@
+
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 
@@ -12,6 +13,7 @@ export async function main() {
 }
 
 export const GET = async (req: Request , res: NextResponse) => {
+    console.log("start GET");
     try{
         await main();
         const todos = await prisma.todoList.findMany(); 
@@ -24,6 +26,7 @@ export const GET = async (req: Request , res: NextResponse) => {
 }
 
 export const POST = async (req: Request , res: NextResponse) => {
+    console.log("start POST");
     try{
         const { title, completed } = await req.json();
         await main();
@@ -35,9 +38,11 @@ export const POST = async (req: Request , res: NextResponse) => {
         });
         return NextResponse.json({ message: "Success", addTodos },{status:201});
     } catch (error) {
+        console.log("エラー" + error);
         return NextResponse.json({ message: "Error", error},{status: 500});
     } finally {
         await prisma.$disconnect();
     }
 }
+
 
