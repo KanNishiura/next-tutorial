@@ -1,6 +1,8 @@
 import { Task } from "@/app/types";
 
 export const fetchAllTodos = async():Promise<Task[]> => {
+    console.log("fetchAllTodos");
+
     const res = await fetch('http://localhost:3000/api/todo',{
       cache: "no-store", 
     })
@@ -11,6 +13,7 @@ export const fetchAllTodos = async():Promise<Task[]> => {
 }
 
 export const addTodo = async (task: Task): Promise<Task[]> => {
+    console.log("addTodo");
 
     const res = await fetch('http://localhost:3000/api/todo',{
         method:"POST",

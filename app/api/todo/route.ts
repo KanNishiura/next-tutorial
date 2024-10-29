@@ -8,7 +8,10 @@ export async function main() {
     try {
         await prisma.$connect();
     } catch (error) { 
-        return Error("DB接続失敗")
+        
+        console.error("DB接続失敗:", error); // エラーログの追加
+        throw new Error("DB接続失敗");
+        
     }
 }
 

@@ -6,7 +6,7 @@ interface TodoListProps {
     todos: Task[];
 }
 
-const TodoList = async ({ todos }: TodoListProps ) => {
+const TodoList = async ({ todos = [] }: TodoListProps ) => {
 
     const completedTodos   = todos.filter((todo: Task) => todo.completed);
     const uncompletedTodos = todos.filter((todo: Task) => !todo.completed);
