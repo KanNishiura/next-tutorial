@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 import { Task } from "../types";
 import { deleteTodo, editTodo } from "../api/todo/api";
 import { useRouter } from "next/navigation";
@@ -12,11 +12,9 @@ interface TodoProps {
 const Todo = ({ todo }: TodoProps) => {
     const router = useRouter();
 
-    const ref = useRef<HTMLInputElement>(null);
-
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing,       setIsEditing]       = useState(false);
     const [editedTaskTitle, setEditedTaskTitle] = useState(todo.title);
-    const [completed, setCompleted] = useState(todo.completed);
+    const [completed,       setCompleted]       = useState(todo.completed);
 
     const handleEdit = async () => {
         setIsEditing(true);
@@ -56,14 +54,15 @@ const Todo = ({ todo }: TodoProps) => {
                         onChange={handleCheckboxChange} 
                     />
                 </div>
-                {isEditing ? (
-                    <input 
-                        type="text" 
-                        className="mr-2 py-1 px-2 mx-auto rounded border-gray-400 border"
-                        value={editedTaskTitle ?? undefined}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                            setEditedTaskTitle(e.target.value)
-                        }
+                {isEditing ? 
+                    (
+                        <input 
+                            type="text" 
+                            className="mr-2 py-1 px-2 mx-auto rounded border-gray-400 border"
+                            value={editedTaskTitle ?? undefined}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                setEditedTaskTitle(e.target.value)
+                            }
                         />
                     ):
                     <span className={completed ? "line-through mx-auto " : " mx-auto "}>
@@ -73,21 +72,24 @@ const Todo = ({ todo }: TodoProps) => {
                 
             </div>
             <div>
-            {isEditing ? (
-                <button 
-                    className="bg-blue-400 text-white hover:bg-blue-500 mr-1  my-auto  px-2 rounded" 
-                    onClick={handleSave}>保存</button>
-            ):(
-                <button 
-                    className="bg-green-400 text-white hover:bg-green-500 mr-1  my-auto  px-2 rounded" 
-                    onClick={handleEdit}
+            {isEditing ? 
+                (
+                    <button 
+                        className="bg-blue-400 text-white hover:bg-blue-500 mr-1  my-auto  px-2 rounded" 
+                        onClick={handleSave}
+                    >保存</button>
+                ):(
+                    <button 
+                        className="bg-green-400 text-white hover:bg-green-500 mr-1  my-auto  px-2 rounded" 
+                        onClick={handleEdit}
                     >編集</button>
-            )}
+                )
+            }
                 
                 <button 
                     className="bg-red-400 text-white hover:bg-red-600 my-auto px-2 rounded"
                     onClick={handleDelete}
-                    >削除</button>
+                >削除</button>
             </div>
         </li>
     )

@@ -32,9 +32,9 @@ export const POST = async (req: Request , res: NextResponse) => {
         await main();
         const addTodos = await prisma.todoList.create({
             data: {
-            id,
-            title,
-            completed: false,
+                id,
+                title,
+                completed: false,
             },
         });
         return NextResponse.json({ message: "Success", addTodos },{status:201});

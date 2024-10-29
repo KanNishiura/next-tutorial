@@ -11,7 +11,6 @@ export const fetchAllTodos = async():Promise<Task[]> => {
 }
 
 export const addTodo = async (task: Task): Promise<Task[]> => {
-    console.log("addTodo");
 
     const res = await fetch('http://localhost:3000/api/todo',{
         method:"POST",
@@ -27,7 +26,7 @@ export const addTodo = async (task: Task): Promise<Task[]> => {
 
 export const editTodo = async (id: number, newText: string, completed:boolean): Promise<Task[]> => {
 
-    const res = await fetch('http://localhost:3000/api/todo/'+id ,{
+    const res = await fetch('http://localhost:3000/api/todo/' + id ,{
         method:"PUT",
         headers:{
         "content-type": "application/json",
@@ -35,13 +34,13 @@ export const editTodo = async (id: number, newText: string, completed:boolean): 
         body: JSON.stringify({ title: newText , completed: completed }),
     });
     const updatedTodo = res.json();
-console.log(updatedTodo);
+    
     return updatedTodo;
 }
 
 export const deleteTodo = async (id: number): Promise<Task[]> => {
 
-    const res = await fetch('http://localhost:3000/api/todo/'+id ,{
+    const res = await fetch('http://localhost:3000/api/todo/' + id ,{
         method:"DELETE",
         headers:{
         "content-type": "application/json",
@@ -49,6 +48,6 @@ export const deleteTodo = async (id: number): Promise<Task[]> => {
         body: JSON.stringify({}),
     });
     const deletedTodo = res.json();
-console.log(deletedTodo);
+
     return deletedTodo;
 }

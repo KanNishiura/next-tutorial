@@ -6,7 +6,7 @@ import { addTodo } from "../api/todo/api";
 
 const AddTask = () => {
 
-    const randomId =Math.floor(Math.random() * 10000);
+    const randomId =Math.floor(Math.random() * 100000);
     const router = useRouter();
 
     const [taskTitle,setTaskTitle] = useState("")
@@ -35,7 +35,7 @@ const AddTask = () => {
             }
             value={taskTitle}
             required
-            />
+        />
         <button className="mt-2 w-full px-4 py-1 rounded text-white bg-blue-400 hover:bg-blue-500">追加</button>
     </form>
     );

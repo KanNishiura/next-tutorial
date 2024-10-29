@@ -8,18 +8,17 @@ interface TodoListProps {
 
 const TodoList = async ({ todos }: TodoListProps ) => {
 
-  const completedTodos = todos.filter((todo: Task) => todo.completed);
-  const uncompletedTodos = todos.filter((todo: Task) => !todo.completed);
-
+    const completedTodos   = todos.filter((todo: Task) => todo.completed);
+    const uncompletedTodos = todos.filter((todo: Task) => !todo.completed);
 
     return (
         <>
-
             <ul className="my-4">
                 {uncompletedTodos.map((uncompletedTodo)=>(
                     <Todo key={uncompletedTodo.id} todo={uncompletedTodo}/>
                 ))}
             </ul>
+
             {completedTodos.length > 0 && ( 
                 <div>
                     <div className="flex items-center justify-center">
