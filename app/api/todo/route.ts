@@ -28,10 +28,11 @@ export const GET = async (req: Request , res: NextResponse) => {
 export const POST = async (req: Request , res: NextResponse) => {
     console.log("start POST");
     try{
-        const { title, completed } = await req.json();
+        const { id,title, completed } = await req.json();
         await main();
         const addTodos = await prisma.todoList.create({
             data: {
+            id,
             title,
             completed: false,
             },

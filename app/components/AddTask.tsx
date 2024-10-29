@@ -6,7 +6,7 @@ import { addTodo } from "../api/todo/api";
 
 const AddTask = () => {
 
-    const randomId =Date.now() + Math.floor(Math.random() * 1000);
+    const randomId =Math.floor(Math.random() * 10000);
     const router = useRouter();
 
     const [taskTitle,setTaskTitle] = useState("")

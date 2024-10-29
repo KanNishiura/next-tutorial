@@ -11,13 +11,14 @@ export const fetchAllTodos = async():Promise<Task[]> => {
 }
 
 export const addTodo = async (task: Task): Promise<Task[]> => {
+    console.log("addTodo");
 
     const res = await fetch('http://localhost:3000/api/todo',{
         method:"POST",
         headers:{
         "content-type": "application/json",
         },
-        body: JSON.stringify({ title: task.title, completed: task.completed }),
+        body: JSON.stringify({ id: task.id, title: task.title, completed: task.completed }),
     });
     const newTodo = res.json();
 

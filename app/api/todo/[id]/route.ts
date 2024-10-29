@@ -5,7 +5,7 @@ import { main } from '../route';
 const prisma = new PrismaClient();
 
 export const PUT = async (req: Request , res: NextResponse) => {
-    console.log("update");
+    console.log("start PUT");
     try{
         const id:number = parseInt(req.url.split("/todo/")[1]);
         const { title, completed } = await req.json();
@@ -25,7 +25,7 @@ export const PUT = async (req: Request , res: NextResponse) => {
 }
 
 export const DELETE = async (req: Request , res: NextResponse) => {
-    console.log("DELETE");
+    console.log("start DELETE");
     try{
         const id:number = parseInt(req.url.split("/todo/")[1]);
 

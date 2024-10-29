@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE `todoList` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` INTEGER NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `completed` BOOLEAN NOT NULL DEFAULT false,
 

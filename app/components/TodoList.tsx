@@ -20,18 +20,21 @@ const TodoList = async ({ todos }: TodoListProps ) => {
                     <Todo key={uncompletedTodo.id} todo={uncompletedTodo}/>
                 ))}
             </ul>
+            {completedTodos.length > 0 && ( 
+                <div>
+                    <div className="flex items-center justify-center">
+                        <hr className="flex-grow border-t" />
+                        <span className="mx-2">完了タスク ▼</span>
+                        <hr className="flex-grow border-t" />
+                    </div>
 
-            <div className="flex items-center justify-center">
-                <hr className="flex-grow border-t" />
-                <span className="mx-2">完了タスク</span>
-                <hr className="flex-grow border-t" />
-            </div>
-
-            <ul className="my-4">
-                {completedTodos.map((completedTodo)=>(
-                    <Todo key={completedTodo.id} todo={completedTodo}/>
-                ))}
-            </ul>
+                    <ul className="my-4">
+                        {completedTodos.map((completedTodo) => (
+                            <Todo key={completedTodo.id} todo={completedTodo} />
+                        ))}
+                    </ul>
+                </div>
+            )}
         </>
     );
 };
