@@ -1,5 +1,6 @@
 "use server";
 
+// import { Task } from "@/app/types";
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
@@ -31,14 +32,15 @@ export const allTodos = async() => {
     }
 };
 
-export const addTodo = async (formData: FormData) => {
+export const addTodo = async (data: any) => {
+    console.log(data);
+    const randomId = Math.floor(Math.random() * 100000);
+    const title = data.get("title") as string;
 
-    const randomId =Math.floor(Math.random() * 100000);
-    const title = formData.get("title") as string;
-
-    if (!title) {
-        throw new Error("Todoを入力してください");
-    }
+    console.log(data);
+    // if (!title) {
+    //     throw new Error("Todoを入力してください");
+    // }
 
     try {
         await main();
@@ -66,7 +68,7 @@ export const editTodo = async (id: number,formData: FormData) => {
 
     try {
         await main();
-        const todos = await prisma.todoList.update({
+        await prisma.todoList.update({
             data: { 
                 title, 
                 completed 
