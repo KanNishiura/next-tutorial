@@ -7,6 +7,7 @@ import { Task } from "../types";
 import { revalidatePath } from "next/cache";
 import { validationSchema } from "../utils/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
 
 const AddTask = () => {
 
@@ -38,12 +39,12 @@ const AddTask = () => {
                 defaultValue=""
             />
              <span>{errors.title?.message as React.ReactNode}</span>
-            <button 
+            <Button
                 type="submit"
-                className="mt-2 w-full px-4 py-1 rounded text-white bg-blue-400 hover:bg-blue-500"
+                className="mt-2 w-full px-4 py-1 rounded text-white"
             >
                 追加
-            </button>
+            </Button>
         </form>
     );
 };
