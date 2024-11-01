@@ -5,38 +5,39 @@ import { addTodo } from "../components/action/serverActions";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Task } from "../types";
 import { revalidatePath } from "next/cache";
+import { validationSchema } from "../utils/validationSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const AddTask = () => {
 
     const { 
         handleSubmit, 
         register, 
+        reset,
         formState: { errors } 
-    } = useForm();
+    } = useForm<Task>( {mode : "onChange", resolver:zodResolver(validationSchema)});
 
-    const onSubmit = (data : any) => {
+    const onSubmit = async (data : Task) => {
         console.log(errors);
         console.log("errors");
         const formData = new FormData();
         formData.append("title", data.title);
 
-        addTodo(formData);
+        await addTodo(formData);
 
-        // const res =revalidatePath('/');
-
-        // console.log(res);
+        reset();
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form id="form" onSubmit={handleSubmit(onSubmit)}>
             <input 
-                {...register("title", { required: true })}
+                {...register("title")}
                 placeholder="TODO を入力"
                 type="text" 
                 className="w-full border px-4 py-2 rounded"
                 defaultValue=""
             />
-            {errors.title && <span>errsor</span>}
+             <span>{errors.title?.message as React.ReactNode}</span>
             <button 
                 type="submit"
                 className="mt-2 w-full px-4 py-1 rounded text-white bg-blue-400 hover:bg-blue-500"
